@@ -4,6 +4,7 @@ var express = require('express');
 var cors = require('cors');
 var multer = require('multer');
 var bodyParser = require('body-parser');
+var upload = multer({ dest: '' })
 // require and use "multer"...
 
 var app = express();
@@ -21,8 +22,8 @@ app.get('/hello', function(req, res){
 });
 
 app.route('/api/fileanalyse')
-.post(multer.single('file'),(req, res) => {
-  console.log(req.body);
+.post(upload.single('upfile'),(req, res) => {
+  console.log(req.upfile);
 });
 
 app.listen(process.env.PORT || 3000, function () {
