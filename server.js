@@ -2,11 +2,13 @@
 
 var express = require('express');
 var cors = require('cors');
-var multer = require('m
+var multer = require('multer');
+var bodyParser = require('body-parser');
 // require and use "multer"...
 
 var app = express();
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 app.use(cors());
 app.use('/public', express.static(process.cwd() + '/public'));
 
@@ -19,8 +21,8 @@ app.get('/hello', function(req, res){
 });
 
 app.route('/api/fileanalyse')
-.post((req, res) => {
-  console.log(req);
+.post(multer.single('file'),(req, res) => {
+  console.log(req.body);
 });
 
 app.listen(process.env.PORT || 3000, function () {
