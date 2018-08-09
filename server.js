@@ -18,6 +18,11 @@ app.get('/hello', function(req, res){
   res.json({greetings: "Hello, API"});
 });
 
+app.route('/api/fileanalyse')
+.post((req, res) => {
+  console.log(req);
+});
+
 app.listen(process.env.PORT || 3000, function () {
   console.log('Node.js listening ...');
 });
